@@ -26,7 +26,7 @@ Here are some differences from the material themes:
 Install with your favorite plugin manager:
 
 ```lua
-use 'JoosepAlviste/palenightfall.nvim'
+use 'Zicona/palenightfall.nvim'
 ```
 
 

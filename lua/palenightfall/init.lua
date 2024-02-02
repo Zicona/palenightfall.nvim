@@ -8,8 +8,10 @@ local M = {}
 ---
 ---@type table<string, string>
 M.colors = {
-  background = '#252837',
-  foreground = '#a6accd',
+  background = '#292929',
+  foreground = '#DDDDDD',
+
+  keyword= '#b6c1e1',
 
   background_darker = '#232534',
   highlight = '#2b2f40',
@@ -17,8 +19,8 @@ M.colors = {
   selection = '#343A51',
   statusline = '#1d1f2b',
   foreground_darker = '#7982b4',
-  line_numbers = '#4e5579',
-  comments = '#676e95',
+  line_numbers = '#787878',
+  comments = '#6D6F7F',
 
   red = '#ff5370',
   orange = '#f78c6c',
@@ -129,7 +131,7 @@ function M.configure_highlights(overrides, transparent)
     Constant    = { fg = c.orange },
     Todo        = { fg = c.orange },
     Title       = { fg = c.yellow },
-    Type        = { fg = c.yellow },
+    Type        = { fg = c.keyword },
     Tag         = { fg = c.yellow },
     SpellBad    = { undercurl = true, sp = c.orange },
     SpellCap    = { undercurl = true, sp = c.blue },
@@ -175,6 +177,7 @@ function M.configure_highlights(overrides, transparent)
     ['@tag.attribute']    = { link = 'Normal' },
     ['@variable.builtin'] = { link = 'Constant' },
     ['@variable']         = { link = 'Normal' },
+    ['@variable.parameter'] = { fg   = "#ee6576"},
     ['@function.builtin'] = { link = 'Function' },
     ['@constant.builtin'] = { link = 'Constant' },
     ['@text.literal']     = { fg = c.foreground_darker },
@@ -314,6 +317,27 @@ function M.configure_highlights(overrides, transparent)
   }
 
   M.highlights = vim.tbl_deep_extend('force', default_highlights, overrides or {})
+end
+
+-- Lsp Semantics Tokens
+local links = {
+  ['@lsp.type.namespace'] = '@namespace',
+  ['@lsp.type.type'] = '@type',
+  ['@lsp.type.class'] = '@type',
+  ['@lsp.type.enum'] = '@type',
+  ['@lsp.type.interface'] = '@type',
+  ['@lsp.type.struct'] = '@structure',
+  ['@lsp.type.parameter'] = '@variable.parameter',
+  ['@lsp.type.variable'] = '@variable',
+  ['@lsp.type.property'] = '@property',
+  ['@lsp.type.enumMember'] = '@constant',
+  ['@lsp.type.function'] = '@function',
+  ['@lsp.type.method'] = '@method',
+  ['@lsp.type.macro'] = '@macro',
+  ['@lsp.type.decorator'] = '@function',
+}
+for newgroup, oldgroup in pairs(links) do
+  vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
 end
 
 ---@class PalenightfallOpts

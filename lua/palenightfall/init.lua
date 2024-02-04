@@ -1,5 +1,9 @@
 local highlight = require('palenightfall.internal').highlight
 
+
+--vim.opt.guicursor = {'a:ver25'}
+
+
 local M = {}
 
 ---@alias PalenightfallHighlightConfig table<string, PalenightfallHighlight>
@@ -8,15 +12,21 @@ local M = {}
 ---
 ---@type table<string, string>
 M.colors = {
-  background = '#292929',
+--background = '#292929',
+  background = '#292d3e',
   foreground = '#DDDDDD',
 
-  keyword= '#b6c1e1',
+  keyword = '#b6c1e1',
+  parameter = '#ee6576',
+  cursorLnBg = '#383838',
+  cursorLnFg = '#ffffff',
 
   background_darker = '#232534',
-  highlight = '#2b2f40',
+--highlight = '#2b2f40',
+  highlight = '#6e5f7c',
   references = '#2e2e41',  -- Mix 19 background / 1 purple
-  selection = '#343A51',
+  selection = '#403d48',
+  selection = '#383838',
   statusline = '#1d1f2b',
   foreground_darker = '#7982b4',
   line_numbers = '#787878',
@@ -78,9 +88,9 @@ function M.configure_highlights(overrides, transparent)
   local default_highlights = {
     -- UI elements
     LineNr            = { fg = c.line_numbers },
-    CursorLine        = { bg = c.background_darker },
-    CursorLineNr      = { fg = c.foreground_darker },
-    CursorColumn      = { bg = c.background_darker },
+    CursorLine        = { bg = c.cursorLnBg },
+    CursorLineNr      = { fg = c.cursorLnFg },
+    CursorColumn      = { bg = c.cursorLnBg },
     Cursor            = { fg = c.background, bg = c.blue },
     TermCursor        = { fg = c.background, bg = c.blue },
     ColorColumn       = { bg = c.background_darker },
@@ -124,8 +134,8 @@ function M.configure_highlights(overrides, transparent)
     Include     = { fg = c.purple },
     Function    = { fg = c.blue },
     String      = { fg = c.green },
-    Delimiter   = { fg = c.cyan },
-    Operator    = { fg = c.cyan },
+    Delimiter   = { fg = c.foreground },
+    Operator    = { fg = c.purple },
     PreProc     = { fg = c.cyan },
     Special     = { fg = c.violet },
     Constant    = { fg = c.orange },
@@ -170,14 +180,17 @@ function M.configure_highlights(overrides, transparent)
     LspDiagnosticsVirtualTextError   = { fg = '#9e4057' },
     LspDiagnosticsVirtualTextWarning = { fg = '#9a6054' },
 
+    ['@lsp.mod.classScope'] = { fg = c.yellow },
+    ['@lsp.mod.defaultLibrary'] = { link = 'Keyword' }, -- auto keyword in cpp
+
     -- Treesitter
     ['@constructor']      = { link = 'Type' },
     ['@tag']              = { link = 'Tag' },
     ['@tag.delimiter']    = { fg = c.foreground_darker },
     ['@tag.attribute']    = { link = 'Normal' },
-    ['@variable.builtin'] = { link = 'Constant' },
+    ['@variable.builtin'] = { link = 'Keyword' },
     ['@variable']         = { link = 'Normal' },
-    ['@variable.parameter'] = { fg   = "#ee6576"},
+    ['@variable.parameter'] = { fg   = c.parameter},
     ['@function.builtin'] = { link = 'Function' },
     ['@constant.builtin'] = { link = 'Constant' },
     ['@text.literal']     = { fg = c.foreground_darker },
@@ -187,6 +200,7 @@ function M.configure_highlights(overrides, transparent)
     ['@text.strong']      = { bold = true },
     ['@text.emphasis']    = { italic = true },
     ['@type.qualifier']   = { link = 'Keyword' },
+    ['@type.builtin']   = { link = 'Keyword' },
 
     -- DEPRECATED: nvim-treesitter has removed these highlight groups
     -- https://github.com/nvim-treesitter/nvim-treesitter/issues/2293#issuecomment-1279974776

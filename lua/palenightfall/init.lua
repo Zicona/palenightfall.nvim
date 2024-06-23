@@ -25,7 +25,7 @@ M.colors = {
 --highlight = '#2b2f40',
   highlight = '#6e5f7c',
   references = '#2e2e41',  -- Mix 19 background / 1 purple
-  selection = '#403d48',
+  -- selection = '#403d48',
   selection = '#383838',
   statusline = '#1d1f2b',
   foreground_darker = '#7982b4',
@@ -165,6 +165,13 @@ function M.configure_highlights(overrides, transparent)
     gitcommitSummary       = { fg = c.blue },
     gitcommitDiscardedType = { fg = c.red },
 
+    -- Latex semantics Tokens
+
+    ['@markup.math']    = { link = 'Keyword' },
+    ['@markup.environment']    = { link = 'Keyword' },
+    ['@markup.environment.name']    = { link = 'Keyword' },
+    ['@punctuation.special'] = { link = 'Function' },
+
     -- LSP
     DiagnosticError                  = { fg = c.red },
     DiagnosticUnderlineError         = { fg = 'NONE', undercurl = true, sp = c.red },
@@ -179,6 +186,7 @@ function M.configure_highlights(overrides, transparent)
     LspReferenceWrite                = { bg = c.references },
     LspDiagnosticsVirtualTextError   = { fg = '#9e4057' },
     LspDiagnosticsVirtualTextWarning = { fg = '#9a6054' },
+
 
     ['@lsp.mod.classScope'] = { fg = c.yellow },
     ['@lsp.mod.defaultLibrary'] = { link = 'Keyword' }, -- auto keyword in cpp

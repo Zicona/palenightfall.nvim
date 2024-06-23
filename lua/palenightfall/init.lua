@@ -12,7 +12,6 @@ local M = {}
 ---
 ---@type table<string, string>
 M.colors = {
---background = '#292929',
   background = '#292d3e',
   foreground = '#DDDDDD',
 
@@ -22,10 +21,8 @@ M.colors = {
   cursorLnFg = '#ffffff',
 
   background_darker = '#232534',
---highlight = '#2b2f40',
   highlight = '#6e5f7c',
   references = '#2e2e41',  -- Mix 19 background / 1 purple
-  -- selection = '#403d48',
   selection = '#383838',
   statusline = '#1d1f2b',
   foreground_darker = '#7982b4',

@@ -1,6 +1,5 @@
 local highlight = require('palenightfall.internal').highlight
 
-
 --vim.opt.guicursor = {'a:ver25'}
 
 

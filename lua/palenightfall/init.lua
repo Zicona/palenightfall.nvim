@@ -20,7 +20,8 @@ M.colors = {
   cursorLnFg = '#ffffff',
 
   background_darker = '#232534',
-  highlight = '#6e5f7c',
+  --highlight = '#6e5f7c',
+  highlight = '#ffcb6b',
   references = '#2e2e41',  -- Mix 19 background / 1 purple
   selection = '#383838',
   statusline = '#1d1f2b',
@@ -60,6 +61,7 @@ M.colors = {
 ---Configure the colors used for highlights.
 ---
 ---@param overrides table<string, string> Color overrides following the same
+
 ---format as `colors`
 function M.configure_colors(overrides)
   M.colors = vim.tbl_deep_extend('force', M.colors, overrides or {})
@@ -90,8 +92,9 @@ function M.configure_highlights(overrides, transparent)
     Cursor            = { fg = c.background, bg = c.blue },
     TermCursor        = { fg = c.background, bg = c.blue },
     ColorColumn       = { bg = c.background_darker },
-    Search            = { bg = c.highlight },
-    IncSearch         = { bg = c.highlight },
+    Search            = { bg = c.highlight , fg = c.background },
+    IncSearch         = { bg = c.pink , fg = c.background },
+    CurSearch         = { link = 'IncSearch' },
     Visual            = { bg = c.selection },
     MatchParen        = { bg = c.references },
     SignColumn        = { bg = 'NONE' },
@@ -106,7 +109,7 @@ function M.configure_highlights(overrides, transparent)
     PMenu             = { bg = c.background_darker },
     PMenuSBar         = { bg = c.background_darker },
     PMenuThumb        = { bg = c.background },
-    PMenuSel          = { bg = c.highlight },
+    PMenuSel          = { bg = "#8c509b" },
     NormalFloat       = { bg = c.background_darker },
     FloatBorder       = { fg = c.background_darker, bg = c.background_darker },
     Question          = { fg = c.green },
@@ -122,7 +125,7 @@ function M.configure_highlights(overrides, transparent)
     Normal      = { fg = c.foreground, bg = transparent and 'NONE' or c.background },
     Identifier  = { fg = c.foreground },
     Comment     = { fg = c.comments, italic = true },
-    NonText     = { fg = c.comments },
+    NonText     = { fg = c.purple },
     Keyword     = { fg = c.purple },
     Repeat      = { fg = c.purple },
     Conditional = { fg = c.purple },
@@ -144,7 +147,7 @@ function M.configure_highlights(overrides, transparent)
     SpellRare   = { undercurl = true, sp = c.violet },
     SpellLocal  = { undercurl = true, sp = c.cyan },
     Noise       = { fg = c.cyan },
-    SpecialKey  = { fg = c.line_numbers },
+    SpecialKey  = { fg = c.purple },
 
     -- Git
     DiffAdd                = { bg = c.diff_add_background },

@@ -327,6 +327,10 @@ function M.configure_highlights(overrides, transparent)
 		SnacksIndentScope = { fg = c.highlight },
 		SnacksIndent= { fg = c.comments },
 
+	  -- 'MeanderingProgrammer/render-markdown.nvim',
+		RenderMarkdownCode = { bg = c.references },
+		RenderMarkdownCodeInline = { bg = c.references },
+
     -- tamago324/lir.nvim
     LirDir          = { fg = c.blue },
     LirEmptyDirText = { bg = c.highlight },

@@ -323,6 +323,10 @@ function M.configure_highlights(overrides, transparent)
     -- folke/lazy.nvim
     LazyNormal = { bg = c.background_darker },
 
+    -- folke/lazy.nvim
+		SnacksIndentScope = { fg = c.highlight },
+		SnacksIndent= { fg = c.comments },
+
     -- tamago324/lir.nvim
     LirDir          = { fg = c.blue },
     LirEmptyDirText = { bg = c.highlight },
